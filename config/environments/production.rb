@@ -62,15 +62,23 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-   ActionMailer::Base.smtp_settings = {
-    :port           => ENV['MAILGUN_SMTP_PORT'],
-    :address        => ENV['MAILGUN_SMTP_SERVER'],
-    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'whispering-springs-79425.herokuapp.com',
-    :authentication => :plain,
+  config.action_mailer.default_url_options = { host: 'https://whispering-springs-79425.herokuapp.com/' }
+  
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV['MAILGUN_API_KEY'],
+    domain: 'sandbox70f3a868e7af4caeb26f17dc474d5609.mailgun.org',
   }
-  ActionMailer::Base.delivery_method = :smtp
+
+  #  ActionMailer::Base.smtp_settings = {
+  #   :port           => ENV['MAILGUN_SMTP_PORT'],
+  #   :address        => ENV['MAILGUN_SMTP_SERVER'],
+  #   :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+  #   :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+  #   :domain         => 'whispering-springs-79425.herokuapp.com',
+  #   :authentication => :plain,
+  # }
+  # ActionMailer::Base.delivery_method = :smtp
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
 
