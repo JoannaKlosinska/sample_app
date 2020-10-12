@@ -62,15 +62,12 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-
-  config.action_mailer.perform_caching = false
-
   config.action_mailer.default_url_options = { host: 'https://whispering-springs-79425.herokuapp.com/' }
   
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     api_key: ENV['MAILGUN_API_KEY'],
-    domain: 'sandboxb972f36c2131409f87c9b637e59b6c6e.mailgun.org',
+    domain: ENV['MAILGUN_DOMAIN']
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
